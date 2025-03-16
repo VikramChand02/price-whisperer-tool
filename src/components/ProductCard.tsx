@@ -15,9 +15,10 @@ interface ProductCardProps {
   };
   className?: string;
   animate?: boolean;
+  style?: React.CSSProperties;
 }
 
-const ProductCard = ({ product, className, animate = true }: ProductCardProps) => {
+const ProductCard = ({ product, className, animate = true, style }: ProductCardProps) => {
   const formattedLowestPrice = new Intl.NumberFormat('en-IN', {
     style: 'currency',
     currency: 'INR',
@@ -35,6 +36,7 @@ const ProductCard = ({ product, className, animate = true }: ProductCardProps) =
         animate && "animate-entrance",
         className
       )}
+      style={style}
     >
       <div className="aspect-[4/3] w-full relative overflow-hidden">
         <img 

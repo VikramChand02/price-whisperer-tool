@@ -30,7 +30,6 @@ const HistoryItem = ({ item, index }: HistoryItemProps) => {
       to={`/product/${item.id}`} 
       className="glass-morphism rounded-xl overflow-hidden flex items-center animate-hover transition-all duration-300 hover:translate-y-[-2px] hover:shadow-md"
       style={{ 
-        animationDelay: `${index * 50}ms`,
         opacity: 0,
         animation: 'fade-in 0.3s ease-out forwards',
         animationDelay: `${index * 50}ms`
