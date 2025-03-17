@@ -1,6 +1,6 @@
 
 import { useState } from 'react';
-import { Search, Shirt, Shoe, Filter } from 'lucide-react';
+import { Search, Shirt, ShoppingBag, Filter } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 
 const SearchBar = () => {
@@ -22,7 +22,7 @@ const SearchBar = () => {
             <Shirt className="h-3.5 w-3.5 text-primary" />
           </button>
           <button className="p-1.5 rounded-full bg-white/50 hover:bg-white/80 transition-colors">
-            <Shoe className="h-3.5 w-3.5 text-primary" />
+            <ShoppingBag className="h-3.5 w-3.5 text-primary" />
           </button>
           <button className="p-1.5 rounded-full bg-white/50 hover:bg-white/80 transition-colors">
             <Filter className="h-3.5 w-3.5 text-primary" />
