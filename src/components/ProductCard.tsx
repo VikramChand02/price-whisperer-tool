@@ -32,53 +32,53 @@ const ProductCard = ({ product, className, animate = true, style }: ProductCardP
     <Link 
       to={`/product/${product.id}`}
       className={cn(
-        "block w-full glass-morphism rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md",
+        "block w-full bg-white/70 backdrop-blur-md rounded-xl overflow-hidden transition-all duration-300 hover:shadow-md border border-white/50",
         animate && "animate-entrance",
         className
       )}
       style={style}
     >
-      <div className="aspect-[4/3] w-full relative overflow-hidden">
+      <div className="aspect-square w-full relative overflow-hidden">
         <img 
           src={product.image} 
           alt={product.name} 
           loading="lazy"
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
         />
-        <div className="absolute top-3 right-3">
+        <div className="absolute top-2 right-2">
           <div className={cn(
-            "px-3 py-1.5 rounded-full text-sm font-medium backdrop-blur-md",
+            "px-2 py-1 rounded-full text-xs font-medium backdrop-blur-md",
             isCheaperOnline 
               ? "bg-green-500/70 text-white" 
               : "bg-red-500/70 text-white"
           )}>
-            <div className="flex items-center space-x-1">
+            <div className="flex items-center space-x-0.5">
               {isCheaperOnline ? (
                 <>
                   <ArrowDown className="w-3 h-3" />
-                  <span>Save {savingsPercentage}%</span>
+                  <span>{savingsPercentage}%</span>
                 </>
               ) : (
                 <>
                   <ArrowUp className="w-3 h-3" />
-                  <span>+{Math.abs(savingsPercentage)}%</span>
+                  <span>{Math.abs(savingsPercentage)}%</span>
                 </>
               )}
             </div>
           </div>
         </div>
       </div>
-      <div className="p-4">
-        <h3 className="font-medium text-lg line-clamp-2 mb-2">{product.name}</h3>
+      <div className="p-3">
+        <h3 className="font-medium text-sm line-clamp-1 mb-1">{product.name}</h3>
         <div className="flex items-end justify-between">
           <div>
-            <p className="text-sm text-muted-foreground">Best Price</p>
-            <p className="text-xl font-semibold">{formattedLowestPrice}</p>
+            <p className="text-xs text-muted-foreground">Best Price</p>
+            <p className="text-base font-semibold">{formattedLowestPrice}</p>
           </div>
           <div className="text-right">
-            <p className="text-sm text-muted-foreground">In Store</p>
+            <p className="text-xs text-muted-foreground">In Store</p>
             <p className={cn(
-              "text-base",
+              "text-sm",
               isCheaperOnline ? "line-through text-muted-foreground" : "font-semibold"
             )}>
               ₹{product.storePrice}
