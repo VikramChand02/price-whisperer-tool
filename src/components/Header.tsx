@@ -3,6 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import SearchBar from './SearchBar';
 import { useState } from 'react';
+import { Switch } from '@/components/ui/switch';
+import { 
+  DropdownMenu, 
+  DropdownMenuContent, 
+  DropdownMenuItem, 
+  DropdownMenuTrigger 
+} from '@/components/ui/dropdown-menu';
 
 interface HeaderProps {
   title: string;
@@ -14,6 +21,9 @@ interface HeaderProps {
 const Header = ({ title, showBackButton = false, showSearch = false, onBackClick }: HeaderProps) => {
   const navigate = useNavigate();
   const [showSettings, setShowSettings] = useState(false);
+  const [notificationsEnabled, setNotificationsEnabled] = useState(true);
+  const [aiRecommendationsEnabled, setAiRecommendationsEnabled] = useState(true);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   const handleBackClick = () => {
     if (onBackClick) {
@@ -25,6 +35,10 @@ const Header = ({ title, showBackButton = false, showSearch = false, onBackClick
 
   const toggleSettings = () => {
     setShowSettings(!showSettings);
+  };
+
+  const toggleNotifications = () => {
+    setShowNotifications(!showNotifications);
   };
 
   return (
@@ -55,9 +69,40 @@ const Header = ({ title, showBackButton = false, showSearch = false, onBackClick
             )}
           </div>
           <div className="flex items-center space-x-2">
-            <button className="p-2 rounded-full hover:bg-gray-100/50 animate-hover">
-              <Bell className="h-5 w-5" />
-            </button>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button className="p-2 rounded-full hover:bg-gray-100/50 animate-hover">
+                  <Bell className="h-5 w-5" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-72 p-3 bg-white/90 backdrop-blur-lg">
+                <div className="mb-3">
+                  <h3 className="font-medium text-primary mb-2">Alerts & Notifications</h3>
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium">Notifications</p>
+                        <p className="text-xs text-muted-foreground">Alerts for price drops, deals, and features</p>
+                      </div>
+                      <Switch 
+                        checked={notificationsEnabled} 
+                        onCheckedChange={setNotificationsEnabled}
+                      />
+                    </div>
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-sm font-medium">AI Recommendations</p>
+                        <p className="text-xs text-muted-foreground">Smart suggestions based on search history</p>
+                      </div>
+                      <Switch 
+                        checked={aiRecommendationsEnabled} 
+                        onCheckedChange={setAiRecommendationsEnabled}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
             <button 
               className="p-2 rounded-full hover:bg-gray-100/50 animate-hover"
               onClick={toggleSettings}
@@ -80,20 +125,6 @@ const Header = ({ title, showBackButton = false, showSearch = false, onBackClick
                 <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
                   <span>Theme Mode</span>
                   <span className="text-xs text-muted-foreground">Light Mode</span>
-                </button>
-              </div>
-            </div>
-            
-            <div className="px-4 py-2 border-b border-gray-100">
-              <h3 className="font-medium text-primary">Alerts & Notifications</h3>
-              <div className="mt-2 space-y-2">
-                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
-                  <span>Notifications</span>
-                  <span className="text-xs text-muted-foreground">Enabled</span>
-                </button>
-                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
-                  <span>AI Recommendations</span>
-                  <span className="text-xs text-muted-foreground">Enabled</span>
                 </button>
               </div>
             </div>
