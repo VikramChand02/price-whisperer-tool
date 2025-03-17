@@ -1,7 +1,8 @@
 
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Bell, Settings, User } from 'lucide-react';
+import { ArrowLeft, Bell, Settings } from 'lucide-react';
 import SearchBar from './SearchBar';
+import { useState } from 'react';
 
 interface HeaderProps {
   title: string;
@@ -12,6 +13,7 @@ interface HeaderProps {
 
 const Header = ({ title, showBackButton = false, showSearch = false, onBackClick }: HeaderProps) => {
   const navigate = useNavigate();
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleBackClick = () => {
     if (onBackClick) {
@@ -19,6 +21,10 @@ const Header = ({ title, showBackButton = false, showSearch = false, onBackClick
     } else {
       navigate(-1);
     }
+  };
+
+  const toggleSettings = () => {
+    setShowSettings(!showSettings);
   };
 
   return (
@@ -52,15 +58,62 @@ const Header = ({ title, showBackButton = false, showSearch = false, onBackClick
             <button className="p-2 rounded-full hover:bg-gray-100/50 animate-hover">
               <Bell className="h-5 w-5" />
             </button>
-            <button className="p-2 rounded-full hover:bg-gray-100/50 animate-hover">
+            <button 
+              className="p-2 rounded-full hover:bg-gray-100/50 animate-hover"
+              onClick={toggleSettings}
+            >
               <Settings className="h-5 w-5" />
-            </button>
-            <button className="p-2 rounded-full hover:bg-gray-100/50 animate-hover">
-              <User className="h-5 w-5" />
             </button>
           </div>
         </div>
         {showSearch && <SearchBar />}
+        
+        {showSettings && (
+          <div className="absolute right-4 mt-2 w-72 bg-white/90 backdrop-blur-lg rounded-lg shadow-lg py-2 z-50 animate-fade-in">
+            <div className="px-4 py-2 border-b border-gray-100">
+              <h3 className="font-medium text-primary">Interface & Preferences</h3>
+              <div className="mt-2 space-y-2">
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
+                  <span>Language & Region</span>
+                  <span className="text-xs text-muted-foreground">English (US)</span>
+                </button>
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
+                  <span>Theme Mode</span>
+                  <span className="text-xs text-muted-foreground">Light Mode</span>
+                </button>
+              </div>
+            </div>
+            
+            <div className="px-4 py-2 border-b border-gray-100">
+              <h3 className="font-medium text-primary">Alerts & Notifications</h3>
+              <div className="mt-2 space-y-2">
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
+                  <span>Notifications</span>
+                  <span className="text-xs text-muted-foreground">Enabled</span>
+                </button>
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm flex items-center justify-between">
+                  <span>AI Recommendations</span>
+                  <span className="text-xs text-muted-foreground">Enabled</span>
+                </button>
+              </div>
+            </div>
+            
+            <div className="px-4 py-2">
+              <h3 className="font-medium text-primary">Help & Support</h3>
+              <div className="mt-2 space-y-2">
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm">
+                  Contact Support
+                </button>
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm">
+                  Report an Issue
+                </button>
+                <button className="w-full text-left py-1.5 px-2 rounded-md hover:bg-gray-100/70 text-sm">
+                  Terms & Conditions
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </header>
   );
