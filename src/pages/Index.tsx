@@ -24,7 +24,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen relative pb-16" style={{
-      background: 'linear-gradient(to bottom, #FFDEE2 0%, #FFFFFF 100%)',
+      background: 'linear-gradient(to bottom, #E5DEFF 0%, #FFFFFF 100%)',
     }}>
       <Header title="" showSearch={true} />
       
