@@ -1,4 +1,3 @@
-
 export interface Product {
   id: string;
   name: string;
@@ -133,22 +132,6 @@ export const getPriceComparison = (productId: string): PriceComparisonItem[] => 
       url: 'https://flipkart.com',
       delivery: 'Free delivery in 2 days',
       rating: 4.3,
-    },
-    {
-      store: 'Reliance Digital',
-      logo: 'https://www.reliancedigital.in/build/client/images/loaders/rd_logo.svg',
-      price: product.storePrice,
-      url: 'https://reliancedigital.in',
-      delivery: 'In-store pickup available',
-      rating: 4.0,
-    },
-    {
-      store: 'Croma',
-      logo: 'https://media-ik.croma.com/prod/https://media.croma.com/image/upload/v1637759004/Croma%20Assets/CMS/LP%20Page%20Banners/Croma_Logo_agcjbh.png',
-      price: product.storePrice - Math.floor(Math.random() * 1000),
-      url: 'https://croma.com',
-      delivery: 'Delivery in 3-5 days',
-      rating: 3.8,
     },
   ].sort((a, b) => a.price - b.price);
 };
