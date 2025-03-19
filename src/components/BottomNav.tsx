@@ -1,6 +1,6 @@
 
 import { Link, useLocation } from 'react-router-dom';
-import { Home, Heart, Clock } from 'lucide-react';
+import { Home, Heart, Clock, ShoppingCart, BarChart } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const BottomNav = () => {
@@ -19,6 +19,28 @@ const BottomNav = () => {
             isActive('/') && "filter drop-shadow-[0_0_3px_rgba(59,130,246,0.5)]"
           )} />
           <span className="text-xs font-medium">Home</span>
+        </Link>
+        
+        <Link to="/trends" className={cn(
+          "flex flex-col items-center justify-center px-3 py-2 rounded-xl transition-all duration-200",
+          isActive('/trends') ? "text-primary bg-primary/10 scale-110" : "text-gray-500 hover:text-primary"
+        )}>
+          <BarChart className={cn(
+            "w-5 h-5 mb-1",
+            isActive('/trends') && "filter drop-shadow-[0_0_3px_rgba(59,130,246,0.5)]"
+          )} />
+          <span className="text-xs font-medium">Trends</span>
+        </Link>
+        
+        <Link to="/cart" className={cn(
+          "flex flex-col items-center justify-center px-3 py-2 rounded-xl transition-all duration-200",
+          isActive('/cart') ? "text-primary bg-primary/10 scale-110" : "text-gray-500 hover:text-primary"
+        )}>
+          <ShoppingCart className={cn(
+            "w-5 h-5 mb-1",
+            isActive('/cart') && "filter drop-shadow-[0_0_3px_rgba(59,130,246,0.5)]"
+          )} />
+          <span className="text-xs font-medium">Cart</span>
         </Link>
         
         <Link to="/saved" className={cn(
