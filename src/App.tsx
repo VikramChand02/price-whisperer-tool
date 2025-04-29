@@ -9,6 +9,10 @@ import NotFound from "./pages/NotFound";
 import ProductDetails from "./pages/ProductDetails";
 import ScanPage from "./pages/ScanPage";
 import HistoryPage from "./pages/HistoryPage";
+import CartPage from "./pages/CartPage";
+import OrdersPage from "./pages/OrdersPage";
+import TrendsPage from "./pages/TrendsPage";
+import SavedPage from "./pages/SavedPage";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +27,10 @@ const App = () => (
           <Route path="/scan" element={<ScanPage />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/cart" element={<CartPage />} />
+          <Route path="/orders" element={<OrdersPage />} />
+          <Route path="/trends" element={<TrendsPage />} />
+          <Route path="/saved" element={<SavedPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
