@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Bell, Settings, Moon, Sun } from 'lucide-react';
+import { ArrowLeft, Bell, Settings, Moon, Sun, ShoppingCart } from 'lucide-react';
 import SearchBar from './SearchBar';
 import { useState, useEffect } from 'react';
 import { Switch } from '@/components/ui/switch';
@@ -83,10 +83,7 @@ const Header = ({ title, showBackButton = false, showSearch = false, onBackClick
             {!title && !showBackButton && (
               <div className="text-lg font-bold text-[#6A0DAD] flex items-center">
                 <span className="bg-[#6A0DAD] text-white rounded-full p-1 mr-1.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                  </svg>
+                  <ShoppingCart className="h-4 w-4" />
                 </span>
                 shopcrazy
               </div>
